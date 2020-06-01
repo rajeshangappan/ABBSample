@@ -45,11 +45,17 @@ IOC Container:
 - Implemented the IOC container to resolve the viewmodel, service and background objects.
 
 **Login Details:**
+
 Admin:
+
 username:admin1 or admin2
+
 password:test
+
 Staff:
+
 Username:user1
+
 Password:test
 
 **Middleware:**
