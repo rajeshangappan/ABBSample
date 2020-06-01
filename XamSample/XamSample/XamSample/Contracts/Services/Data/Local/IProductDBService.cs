@@ -52,6 +52,26 @@ namespace XamSample.Contracts
         /// </summary>
         /// <returns>The <see cref="Task{List{ProductDAO}}"/>.</returns>
         Task<List<ProductDAO>> GetOfflineProducts();
+
+        /// <summary>
+        /// The AddProductsFromOnline.
+        /// </summary>
+        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        Task<int> AddProductsFromOnline(ProductDAO product);
+
+        /// <summary>
+        /// The UpdateproductFromOnline.
+        /// </summary>
+        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        Task<int> UpdateproductFromOnline(ProductDAO product);
+
+        /// <summary>
+        /// The GetLatestVersion.
+        /// </summary>
+        /// <returns>The <see cref="Task{long}"/>.</returns>
+        Task<long> GetLatestVersion();
     }
 
     #endregion

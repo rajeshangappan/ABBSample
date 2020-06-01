@@ -53,6 +53,16 @@ namespace XamSample.Services
         }
 
         /// <summary>
+        /// The AddProductsFromOnline.
+        /// </summary>
+        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        public async Task<int> AddProductsFromOnline(ProductDAO product)
+        {
+            return await _productItem.Insert(product);
+        }
+
+        /// <summary>
         /// The DeleteProduct.
         /// </summary>
         /// <param name="product">The product<see cref="Product"/>.</param>
@@ -63,6 +73,16 @@ namespace XamSample.Services
             product.IsDeleted = true;
             product.UpdatedAt = DateTime.Now;
             return await _productItem.Update(Mapper.Map<ProductDAO>(product));
+        }
+
+        /// <summary>
+        /// The GetLatestVersion.
+        /// </summary>
+        /// <returns>The <see cref="Task{long}"/>.</returns>
+        public async Task<long> GetLatestVersion()
+        {
+            var products = await _productItem.Get();
+            return products.Max(c => c.Version);
         }
 
         /// <summary>
@@ -108,6 +128,16 @@ namespace XamSample.Services
             product.UpdatedAt = DateTime.Now;
             var result = await _productItem.Update(product);
             return result;
+        }
+
+        /// <summary>
+        /// The UpdateproductFromOnline.
+        /// </summary>
+        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        public async Task<int> UpdateproductFromOnline(ProductDAO product)
+        {
+            return await _productItem.Update(product);
         }
 
         #endregion

@@ -70,13 +70,15 @@ namespace XamSample.Implementations.Services.Data.Sync
             {
                 var prod = Mapper.Map<List<Product>>(oldProducts);
                 var URI = AppConstants.SyncProductUrl;
+                var higherVersion = await _productDBService.GetLatestVersion();
 
-                var result = await _apiRepository.PostAsync<List<Product>>(URI, prod);
+                var result = await _apiRepository.PostAsync<List<Product>>(URI,
+                    new SyncRequest { OfflineVersion = higherVersion, Products = prod });
 
                 await SyncToOffline(result);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Handling exception
             }
@@ -89,18 +91,18 @@ namespace XamSample.Implementations.Services.Data.Sync
         /// <returns>The <see cref="Task"/>.</returns>
         private async Task SyncToOffline(List<Product> onlineProd)
         {
-            var offTables = Mapper.Map<List<ProductDAO>>(onlineProd);
+            var onlineData = Mapper.Map<List<ProductDAO>>(onlineProd);
 
-            foreach (var data in offTables)
+            foreach (var data in onlineData)
             {
                 var offentity = await _productDBService.GetProduct(data.Id);
                 if (offentity != null)
                 {
-                    await _productDBService.Updateproduct(data);
+                    await _productDBService.UpdateproductFromOnline(data);
                 }
                 else
                 {
-                    await _productDBService.AddProducts(data);
+                    await _productDBService.AddProductsFromOnline(data);
                 }
             }
         }
