@@ -44,6 +44,14 @@ IOC Container:
 
 - Implemented the IOC container to resolve the viewmodel, service and background objects.
 
+**Login Details:**
+Admin:
+username:admin1 or admin2
+password:test
+Staff:
+Username:user1
+Password:test
+
 **Middleware:**
 
 - Created the Web API by .Net core.
@@ -53,7 +61,7 @@ IOC Container:
   - SyncController – Sync the offline data to online and vice versa.
 - Added the authorization filter to validate the user and user roles.
 
-BackEnd:
+**BackEnd:**
 
 - Store the backend data in SQL Server.
 - Here we used the 2 tables user and product
